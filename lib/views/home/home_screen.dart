@@ -1,8 +1,8 @@
-import 'package:LetsGo_Scan/views/splash/Profil/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import '../Profil/profil_screen.dart';
 import '../Scan/scanner_screen.dart';
 import 'home.dart';
 
