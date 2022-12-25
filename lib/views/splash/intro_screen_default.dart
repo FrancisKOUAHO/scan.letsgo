@@ -31,7 +31,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         title: "Scan",
         description:
             "Scanner les billets et les pass de votre événement en présentant le code-barre devant l'appareil.",
-        pathImage: "images/scan.png",
+        pathImage: "assets/images/scan.png",
         backgroundColor: Color(0xFF302E76),
       ),
     );
@@ -40,7 +40,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         title: "Synchronisation",
         description:
             "En Wi-Fi ou via réseau mobile, la validation des billets est transmise au serveur en temps réel et synchronisée avec les autres appareils.",
-        pathImage: "images/photo_ruler.png",
+        pathImage: "assets/images/statistiques.png",
         backgroundColor: Color(0xFF302E76),
       ),
     );
@@ -49,16 +49,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         title: "Statistiques",
         description:
             "Consultez en temps réel les statistiques de votre (vos) appareil (s). Restez connecté au WiFi pour une synchronisation optimale des données.",
-        pathImage: "images/photo_ruler.png",
-        backgroundColor: Color(0xFF302E76),
-      ),
-    );
-    listContentConfig.add(
-      const ContentConfig(
-        title: "Pré-contrôle",
-        description:
-            "Permet un pré-contrôle multiple événements à l'entrée principale sans validation directe sur l'événement.",
-        pathImage: "images/photo_ruler.png",
+        pathImage: "assets/images/synchronize.png",
         backgroundColor: Color(0xFF302E76),
       ),
     );
@@ -66,7 +57,6 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
       const ContentConfig(
         title: "Let's Go",
         description: "Scanner vos premiers billets dès maintenant",
-        pathImage: "images/photo_ruler.png",
         backgroundColor: Color(0xFF302E76),
       ),
     );
