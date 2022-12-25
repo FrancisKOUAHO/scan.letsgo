@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
 import '../../theme/letsgo_theme.dart';
-import '../home/home_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -237,19 +236,14 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       onPressed: () {
-                        /* if (emailController.text.isEmpty ||
+                        if (emailController.text.isEmpty ||
                             passwordController.text.isEmpty) {
                         } else {
                           auth.loginUser(
                               context: context,
                               email: emailController.text.trim(),
                               password: passwordController.text.trim());
-                        }*/
-
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const HomeScreen()));
+                        }
                       },
                     );
                   }),

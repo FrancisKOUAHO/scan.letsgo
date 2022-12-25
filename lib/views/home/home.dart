@@ -13,6 +13,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Home');
+    return const Scaffold(
+      body: SingleChildScrollView(
+        child: Text('Home'),
+      ),
+    );
   }
 }

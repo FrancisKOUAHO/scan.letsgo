@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:LetsGo_Scan/views/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -23,49 +24,6 @@ class AuthenticationProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   String get resMessage => _resMessage;
-
-  void registerUser({
-    required String email,
-    required String password,
-    required String fullName,
-    BuildContext? context,
-  }) async {
-    _isLoading = true;
-    notifyListeners();
-
-    String url = '$requestBaseUrl/auth/register';
-
-    final body = {'full_name': fullName, 'email': email, 'password': password};
-
-    print('body: $body');
-
-    try {
-      http.Response req = await http.post(Uri.parse(url), body: body);
-
-      if (req.statusCode == 200 || req.statusCode == 201) {
-        _isLoading = false;
-        _resMessage = 'Inscription réussie';
-        PageNavigator(ctx: context).nextPageOnly(page: const SignIn());
-        notifyListeners();
-      } else {
-        final res = json.decode(req.body);
-
-        _resMessage = res.body['message'];
-
-        _isLoading = false;
-        notifyListeners();
-      }
-    } on SocketException catch (_) {
-      _isLoading = false;
-      _resMessage = 'Erreur de connexion';
-      notifyListeners();
-    } catch (e) {
-      _isLoading = false;
-      _resMessage = 'Une erreur est survenue';
-      notifyListeners();
-      print(':::: $e');
-    }
-  }
 
   //Login
   void loginUser({
@@ -95,7 +53,7 @@ class AuthenticationProvider extends ChangeNotifier {
         DatabaseProvider().saveToken(token);
 
         if (token.isNotEmpty) {
-          PageNavigator(ctx: context).nextPageOnly(page: const Home());
+          PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
         }
       } else {
         final res = json.decode(req.body);
