@@ -1,4 +1,3 @@
-
 import 'package:LetsGo_Scan/views/splash/login/reset_password.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../theme/letsgo_theme.dart';
 import '../home/home_screen.dart';
-
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -240,7 +238,7 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       onPressed: () {
-                       /* if (emailController.text.isEmpty ||
+                        /* if (emailController.text.isEmpty ||
                             passwordController.text.isEmpty) {
                         } else {
                           auth.loginUser(
@@ -256,73 +254,6 @@ class _SignInState extends State<SignIn> {
                       },
                     );
                   }),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(100, 30, 100, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 64, 71, 209),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      FaIcon(
-                        FontAwesomeIcons.facebookF,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFD14040),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      FaIcon(
-                        FontAwesomeIcons.googlePlusG,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF008AEF),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      FaIcon(
-                        FontAwesomeIcons.linkedinIn,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),

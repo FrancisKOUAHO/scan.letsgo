@@ -34,16 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Positioned.fill(
             child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/Splash.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -63,10 +53,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: <Widget>[
                   Column(
                     children: [
-                      Text(
-                        "Let's GO",
-                        style: LetsGoTheme.logoTitle,
+                      Image.asset(
+                        'assets/logo/playstore.png',
+                        width: 200,
+                        height: 200,
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+
                     ],
                   ),
                 ],
