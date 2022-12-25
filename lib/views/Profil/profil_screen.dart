@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../database/db_provider.dart';
-import '../../../theme/letsgo_theme.dart';
+import '../../database/db_provider.dart';
+import '../../theme/letsgo_theme.dart';
+
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
