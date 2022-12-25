@@ -1,10 +1,9 @@
-import 'package:LetsGo_Scan/views/splash/login/reset_password.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:LetsGo_Scan/views/login/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../provider/auth_provider.dart';
-import '../../../theme/letsgo_theme.dart';
+import '../../provider/auth_provider.dart';
+import '../../theme/letsgo_theme.dart';
 import '../home/home_screen.dart';
 
 class SignIn extends StatefulWidget {

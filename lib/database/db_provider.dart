@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/url.dart';
 import '../utils/routers.dart';
-import '../views/splash/login/sign_in.dart';
+import '../views/login/sign_in.dart';
 
 class DatabaseProvider extends ChangeNotifier {
   final Future<SharedPreferences> _pref = SharedPreferences.getInstance();

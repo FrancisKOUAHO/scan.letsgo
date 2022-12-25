@@ -1,8 +1,8 @@
-import 'package:LetsGo_Scan/views/splash/login/sign_in.dart';
+import 'package:LetsGo_Scan/views/login/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../theme/letsgo_theme.dart';
+import '../../../../theme/letsgo_theme.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);

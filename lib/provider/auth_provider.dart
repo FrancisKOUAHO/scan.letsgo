@@ -8,8 +8,8 @@ import 'package:http/http.dart' as http;
 import '../constants/url.dart';
 import '../database/db_provider.dart';
 import '../utils/routers.dart';
-import '../views/splash/home/home.dart';
-import '../views/splash/login/sign_in.dart';
+import '../views/home/home.dart';
+import '../views/login/sign_in.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   ///Base Url
