@@ -58,8 +58,6 @@ class AuthenticationProvider extends ChangeNotifier {
       } else {
         final res = json.decode(req.body);
 
-        print('res: $res');
-
         _resMessage = res['message'];
 
         _isLoading = false;
