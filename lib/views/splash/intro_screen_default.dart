@@ -20,17 +20,15 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
 
   dynamic _user;
 
-
-
   @override
   void initState() {
     super.initState();
 
     listContentConfig.add(
       const ContentConfig(
-        title: "Let'sGo",
+        title: "Bienvenue !",
         description:
-            "Bienvenue ! Conslutez les differents étapes pour l'utilisation de l'application",
+            "Conslutez les differents étapes pour l'utilisation de l'application",
         backgroundColor: Color(0xFF302E76),
       ),
     );
@@ -63,7 +61,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
     );
     listContentConfig.add(
       const ContentConfig(
-        title: "Let's Go",
+        title: "Let's Go Scan",
         description: "Scanner vos premiers billets dès maintenant",
         backgroundColor: Color(0xFF302E76),
       ),
