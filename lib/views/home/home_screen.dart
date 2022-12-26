@@ -19,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
     ScannerScreen(),
+    Home(),
     ProfilScreen()
   ];
 
@@ -70,12 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.white,
             tabs: const [
               GButton(
-                icon: LineIcons.home,
-                text: 'Accueil',
-              ),
-              GButton(
                 icon: LineIcons.qrcode,
                 text: 'Scan',
+              ),
+              GButton(
+                icon: LineIcons.history,
+                text: 'Historique',
               ),
               GButton(
                 icon: LineIcons.user,

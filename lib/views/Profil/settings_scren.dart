@@ -51,7 +51,8 @@ class _SettingsScrenState extends State<SettingsScren> {
                       ],
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -90,7 +91,8 @@ class _SettingsScrenState extends State<SettingsScren> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
