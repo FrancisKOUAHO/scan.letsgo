@@ -77,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Column(
-                    children: [],
+                    children: const [],
                   ),
                 ],
               ),

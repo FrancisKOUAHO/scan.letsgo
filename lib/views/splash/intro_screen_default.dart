@@ -77,7 +77,6 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
 
   @override
   Widget build(BuildContext context) {
-    print("user : $_user");
     return IntroSlider(
       key: UniqueKey(),
       listContentConfig: listContentConfig,
