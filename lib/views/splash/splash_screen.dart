@@ -34,8 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigate() {
     Future.delayed(const Duration(seconds: 3), () {
       if (_user != null) {
-        PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
-      } else {
         PageNavigator(ctx: context)
             .nextPageOnly(page: const IntroScreenDefault());
       }
@@ -63,9 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 gradient: LinearGradient(
                   colors: [
                     const Color(0xFF302E76).withOpacity(0.5),
-                    const Color(0xFF5B7CB8).withOpacity(0.5),
-                    const Color(0xFF5B7CB8).withOpacity(1),
-                    const Color(0xFF5B7CB8).withOpacity(1),
+                    const Color(0xFF302E76).withOpacity(0.5),
+                    const Color(0xFF302E76).withOpacity(1),
+                    const Color(0xFF302E76).withOpacity(1),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
