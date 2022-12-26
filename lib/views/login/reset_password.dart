@@ -1,6 +1,5 @@
 import 'package:LetsGo_Scan/views/login/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../theme/letsgo_theme.dart';
 
@@ -168,15 +167,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     ),
                     onPressed: () async {
                       if (emailController.text.isEmpty) {
-                        Fluttertoast.showToast(
-                          msg: 'Veuillez entrer votre courriel',
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                          fontSize: 16.0,
-                        );
+
                       } else {
                         Navigator.push(
                           context,

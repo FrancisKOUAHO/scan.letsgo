@@ -1,5 +1,5 @@
 import 'package:LetsGo_Scan/provider/auth_provider.dart';
-import 'package:LetsGo_Scan/views/splash/intro_screen_default.dart';
+import 'package:LetsGo_Scan/views/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child:  const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: IntroScreenDefault(),
+        home: SplashScreen(),
       ),
     );
   }

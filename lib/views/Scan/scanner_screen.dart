@@ -1,9 +1,15 @@
+import 'dart:convert';
 import 'dart:io' show Platform;
 
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:http/http.dart' as http;
+
+import '../../constants/url.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({Key? key}) : super(key: key);
@@ -13,25 +19,30 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
+  final requestBaseUrl = AppUrl.baseUrl;
   Barcode? result;
+  String? valid;
   QRViewController? controller;
-
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   @override
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller?.pauseCamera();
+      controller!.pauseCamera();
     }
-    controller?.resumeCamera();
+    controller!.resumeCamera();
+  }
+
+  Future<http.Response> validateQrCode() async {
+    String url =
+        '$requestBaseUrl/reservations/validateQrCode/${'74c366b4-65e7-480a-92c4-c3c5bbd6c967'}';
+    final response = await http.get(Uri.parse(url));
+    final body = jsonDecode(response.body);
+    setState(() {
+      valid = body['message'];
+    });
+    return response;
   }
 
   @override
@@ -52,49 +63,85 @@ class _ScannerScreenState extends State<ScannerScreen> {
         ],
       )));
 
-  buildQRView(BuildContext context) => QRView(
+  buildQRView(BuildContext context) {
+    var scanArea = (MediaQuery.of(context).size.width < 400 ||
+            MediaQuery.of(context).size.height < 400)
+        ? 300.0
+        : 300.0;
+    return QRView(
       key: qrKey,
-      onQRViewCreated: onQRViewCreated,
+      onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-          borderColor: Theme.of(context).accentColor,
-          borderRadius: 10,
-          borderLength: 20,
-          borderWidth: 10,
-          cutOutSize: MediaQuery.of(context).size.width * 0.8));
+        borderColor: Colors.blue,
+        borderRadius: 10,
+        borderLength: 30,
+        borderWidth: 10,
+        cutOutSize: scanArea,
+      ),
+      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+    );
+  }
 
-  void onQRViewCreated(QRViewController controller) {
+  void _onQRViewCreated(QRViewController controller) {
     setState(() {
       this.controller = controller;
     });
-
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        controller.pauseCamera();
-        Navigator.of(context).pop(scanData.code);
+        validateQrCode();
+        result = scanData;
       });
     });
   }
 
+  void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
+    log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
+    if (!p) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('no Permission')),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
   buildResult() => Container(
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Colors.white24,
-      borderRadius: BorderRadius.circular(10),
-    ),
-      child: Text(
-        result != null
-            ? 'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}'
-            : 'Scanner un code',
-        style: const TextStyle(fontSize: 20),
-        maxLines: 3,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white24,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (result != null)
+            Text(
+              '${result!.code}',
+              style: const TextStyle(fontSize: 15, color: Colors.white),
+            )
+          else
+            const Text(
+              'Scan a code',
+              style: TextStyle(fontSize: 15, color: Colors.white),
+            ),
+          if (valid != null)
+            Text(
+              'Valid: $valid',
+              style: const TextStyle(fontSize: 15, color: Colors.white),
+            ),
+        ],
       ));
 
   buildControlButtons() => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12),
-    decoration: BoxDecoration(
-      color: Colors.white24,
-      borderRadius: BorderRadius.circular(8),
-    ),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: Colors.white24,
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -117,7 +164,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 if (snapshot.data == null) {
                   return const Icon(Icons.flip_camera_ios);
                 }
-                return Icon(snapshot.data != null ? Icons.camera_front : Icons.camera_rear);
+                return Icon(snapshot.data != null
+                    ? Icons.camera_front
+                    : Icons.camera_rear);
               },
             ),
             onPressed: () => controller?.flipCamera(),
