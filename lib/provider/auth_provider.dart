@@ -50,7 +50,9 @@ class AuthenticationProvider extends ChangeNotifier {
 
         DatabaseProvider().saveToken(token);
 
-        if (token.isNotEmpty) {
+        final organisteur = await DatabaseProvider().getUser();
+
+        if (organisteur['role'] == 'partner') {
           PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
         }
       } else {
