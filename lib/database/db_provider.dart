@@ -55,8 +55,6 @@ class DatabaseProvider extends ChangeNotifier {
       'Authorization': 'Bearer ${await getToken()}'
     });
 
-    print(json.decode(req.body));
-
     return json.decode(req.body);
   }
 
