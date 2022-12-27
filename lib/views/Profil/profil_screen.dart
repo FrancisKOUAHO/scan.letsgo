@@ -112,7 +112,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 6,
                                   ),
                                   Text(
-                                    'ACTIVITÉS',
+                                    'MES ACTIVITÉS',
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 12,

@@ -1,9 +1,11 @@
+import 'package:LetsGo_Scan/views/home/home_screen.dart';
 import 'package:LetsGo_Scan/views/login/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
 import '../../theme/letsgo_theme.dart';
+import '../../utils/routers.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);

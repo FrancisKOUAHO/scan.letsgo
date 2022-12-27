@@ -53,5 +53,12 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>https</string>
+      <string>http</string>
+    </array>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>App uses the local network to discover Cast-enabled devices on your WiFi network.</string>
 </dict>
 </plist>
