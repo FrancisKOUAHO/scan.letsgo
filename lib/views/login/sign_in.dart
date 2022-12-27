@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
 import '../../theme/letsgo_theme.dart';
-import '../../utils/routers.dart';
-import '../home/home_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -223,7 +221,7 @@ class _SignInState extends State<SignIn> {
                         shape: MaterialStateProperty.all(
                           const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(100),
+                              Radius.circular(10),
                             ),
                           ),
                         ),
@@ -238,16 +236,14 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       onPressed: () {
-                        /*if (emailController.text.isEmpty ||
+                        if (emailController.text.isEmpty ||
                             passwordController.text.isEmpty) {
                         } else {
                           auth.loginUser(
                               context: context,
                               email: emailController.text.trim(),
                               password: passwordController.text.trim());
-                        }*/
-                        PageNavigator(ctx: context)
-                            .nextPageOnly(page: const HomeScreen());
+                        }
                       },
                     );
                   }),
