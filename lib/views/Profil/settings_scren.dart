@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../database/db_provider.dart';
 import '../../../theme/letsgo_theme.dart';
+import '../../widgets/custom_return_appbar.dart';
 
 class SettingsScren extends StatefulWidget {
   const SettingsScren({Key? key}) : super(key: key);
@@ -15,6 +16,11 @@ class _SettingsScrenState extends State<SettingsScren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
+        child: CustomReturnAppBar(
+            'Paramètres', Colors.transparent, LetsGoTheme.black),
+      ),
       body: Container(
         padding: const EdgeInsets.only(left: 10, top: 25, right: 10),
         child: ListView(
@@ -131,7 +137,7 @@ class _SettingsScrenState extends State<SettingsScren> {
                     style: TextStyle(
                         fontSize: 16,
                         letterSpacing: 2.2,
-                        color: Color(0xff4376FF))),
+                        color: Color(0xFF302E76))),
               ),
             )
           ],

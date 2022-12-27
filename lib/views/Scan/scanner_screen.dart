@@ -34,9 +34,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
     controller!.resumeCamera();
   }
 
-  Future<http.Response> validateQrCode() async {
-    String url =
-        '$requestBaseUrl/reservations/validateQrCode/${'74c366b4-65e7-480a-92c4-c3c5bbd6c967'}';
+  Future<http.Response> validateQrCode(reservation) async {
+    String url = '$requestBaseUrl/reservations/validateQrCode/$reservation';
     final response = await http.get(Uri.parse(url));
     final body = jsonDecode(response.body);
     setState(() {
@@ -88,7 +87,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        validateQrCode();
+        validateQrCode(scanData.code);
         result = scanData;
       });
     });

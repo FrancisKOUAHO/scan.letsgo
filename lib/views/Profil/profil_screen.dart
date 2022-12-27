@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../database/db_provider.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../utils/routers.dart';
+import '../../widgets/custom_profil_appbar.dart';
+import '../../widgets/custom_return_appbar.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -29,6 +31,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
           _user = snapshot.data;
           return Scaffold(
               extendBodyBehindAppBar: true,
+              appBar: const PreferredSize(
+                preferredSize: Size(double.infinity, 60),
+                child: CustomProfilAppBar(),
+              ),
               body: Stack(
                 children: <Widget>[
                   Column(
@@ -106,7 +112,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 6,
                                   ),
                                   Text(
-                                    'ACTIVITÉS',
+                                    'MES ACTIVITÉS',
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 12,
@@ -164,84 +170,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              PageNavigator(ctx: context).nextPageOnly(page: const SettingsScren());
-                            },
-                            child: SizedBox(
-                              width: 110,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.settings,
-                                    color: LetsGoTheme.main,
-                                    size: 23,
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  Text(
-                                    'Paramètres',
-                                    style: TextStyle(
-                                      color: LetsGoTheme.black,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    '7',
-                                    style: TextStyle(
-                                      color: LetsGoTheme.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
                         ],
                       ),
                       const SizedBox(
                         height: 30,
-                      ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16, 12, 0, 0),
-                                child: Text(
-                                  'Mes amis',
-                                  style: LetsGoTheme.subTitle,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 100,
-                            decoration: const BoxDecoration(),
-                            child: const Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0, 2, 0, 0),
-                              child: Center(
-                                child: Text(
-                                  'Aucun ami pour le moment',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xBA777777),
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              )
-                            ),
-                          ),
-                        ],
                       ),
                       Column(
                         children: [
