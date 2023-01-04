@@ -238,14 +238,16 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       onPressed: () {
-                        if (emailController.text.isEmpty ||
+                        /*if (emailController.text.isEmpty ||
                             passwordController.text.isEmpty) {
                         } else {
                           auth.loginUser(
                               context: context,
                               email: emailController.text.trim(),
                               password: passwordController.text.trim());
-                        }
+                        }*/
+                        PageNavigator(ctx: context)
+                            .nextPageOnly(page: const SignIn());
                       },
                     );
                   }),
