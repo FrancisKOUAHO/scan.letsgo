@@ -117,18 +117,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (result != null)
-            Text(
-              '${result!.code}',
-              style: const TextStyle(fontSize: 15, color: Colors.white),
-              maxLines: 5,
-            )
-          else
-            const Text(
-              'Scan a code',
-              style: TextStyle(fontSize: 15, color: Colors.white),
-              maxLines: 5,
-            ),
           if (valid != null)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +132,13 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   maxLines: 5,
                 ),
               ],
+            )else(
+            const Text(
+              'Scan a code',
+              style: TextStyle(fontSize: 15, color: Colors.white),
+              maxLines: 5,
             )
+          )
         ],
       ));
 
