@@ -21,7 +21,7 @@ class ScannerScreen extends StatefulWidget {
 class _ScannerScreenState extends State<ScannerScreen> {
   final requestBaseUrl = AppUrl.baseUrl;
   Barcode? result;
-  String? valid;
+  bool? valid;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -39,7 +39,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     final response = await http.get(Uri.parse(url));
     final body = jsonDecode(response.body);
     setState(() {
-      valid = body['message'];
+      valid = body['success'];
     });
     return response;
   }
@@ -109,7 +109,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   buildResult() => Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         color: Colors.white24,
         borderRadius: BorderRadius.circular(10),
@@ -117,28 +117,32 @@ class _ScannerScreenState extends State<ScannerScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (valid != null)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Image.network(
-                  "https://i0.wp.com/objectifalpinisme.com/wp-content/uploads/2021/02/png-clipart-check-mark-computer-icons-green-check-circle-angle-text.png?fit=900%2C750&ssl=1",
-                  width: double.infinity,
-                  fit: BoxFit.fitWidth,
-                ),
-                Text(
-                  'Valid: $valid',
-                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                  maxLines: 5,
-                ),
-              ],
-            )else(
+          if (result != null)
+            Text(
+              '${result!.code}',
+              style: const TextStyle(fontSize: 15, color: Colors.white),
+              maxLines: 5,
+            )
+          else
             const Text(
               'Scan a code',
               style: TextStyle(fontSize: 15, color: Colors.white),
               maxLines: 5,
-            )
-          )
+            ),
+          if (valid != null)
+            (valid!
+                ? const Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 45.0,
+                    semanticLabel: 'Text to announce in accessibility modes',
+                  )
+                : const Icon(
+                    Icons. close,
+                    color: Colors.red,
+                    size: 45.0,
+                    semanticLabel: 'Text to announce in accessibility modes',
+                  ))
         ],
       ));
 
