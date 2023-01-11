@@ -121,17 +121,30 @@ class _ScannerScreenState extends State<ScannerScreen> {
             Text(
               '${result!.code}',
               style: const TextStyle(fontSize: 15, color: Colors.white),
+              maxLines: 5,
             )
           else
             const Text(
               'Scan a code',
               style: TextStyle(fontSize: 15, color: Colors.white),
+              maxLines: 5,
             ),
           if (valid != null)
-            Text(
-              'Valid: $valid',
-              style: const TextStyle(fontSize: 15, color: Colors.white),
-            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Image.network(
+                  "https://i0.wp.com/objectifalpinisme.com/wp-content/uploads/2021/02/png-clipart-check-mark-computer-icons-green-check-circle-angle-text.png?fit=900%2C750&ssl=1",
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth,
+                ),
+                Text(
+                  'Valid: $valid',
+                  style: const TextStyle(fontSize: 15, color: Colors.white),
+                  maxLines: 5,
+                ),
+              ],
+            )
         ],
       ));
 
