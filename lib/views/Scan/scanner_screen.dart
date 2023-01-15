@@ -208,7 +208,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
           ),
           if (_qrCodeScanned)
             IconButton(
-              icon: const Icon(Icons.refresh),
+              icon: const Icon(Icons.restart_alt_rounded),
               onPressed: () {
                 _resetScanner();
               },
