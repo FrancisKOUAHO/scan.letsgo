@@ -43,8 +43,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
       valid = body['success'];
       _qrCodeScanned = true;
     });
-    controller!.pauseCamera();
-    controller!.dispose();
     return response;
   }
 
@@ -73,10 +71,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
             MediaQuery.of(context).size.height < 400)
         ? 300.0
         : 300.0;
-    if (_qrCodeScanned) {
-      controller!.dispose();
-      _qrCodeScanned = false;
-    }
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
@@ -132,6 +126,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (_qrCodeScanned)
           if (valid != null)
             (valid!
                 ? Column(
