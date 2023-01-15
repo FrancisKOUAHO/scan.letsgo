@@ -41,6 +41,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
     setState(() {
       valid = body['success'];
     });
+    controller!.pauseCamera();
+    controller!.dispose();
     return response;
   }
 
@@ -117,31 +119,41 @@ class _ScannerScreenState extends State<ScannerScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (result != null)
-            Text(
-              '${result!.code}',
-              style: const TextStyle(fontSize: 15, color: Colors.white),
-              maxLines: 5,
-            )
-          else
-            const Text(
-              'Scan a code',
-              style: TextStyle(fontSize: 15, color: Colors.white),
-              maxLines: 5,
-            ),
           if (valid != null)
             (valid!
-                ? const Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                    size: 45.0,
-                    semanticLabel: 'Text to announce in accessibility modes',
+                ? Column(
+                    children: const [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 45.0,
+                        semanticLabel:
+                            'Text to announce in accessibility modes',
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Valider',
+                        style: TextStyle(fontSize: 15, color: Colors.green),
+                        maxLines: 5,
+                      ),
+                    ],
                   )
-                : const Icon(
-                    Icons. close,
-                    color: Colors.red,
-                    size: 45.0,
-                    semanticLabel: 'Text to announce in accessibility modes',
+                : Column(
+                    children: const [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                        size: 45.0,
+                        semanticLabel:
+                            'Text to announce in accessibility modes',
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'déja utilisé',
+                        style: TextStyle(fontSize: 15, color: Colors.red),
+                        maxLines: 5,
+                      ),
+                    ],
                   ))
         ],
       ));

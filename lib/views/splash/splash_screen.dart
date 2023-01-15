@@ -16,26 +16,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final DatabaseProvider? db = DatabaseProvider();
-  dynamic _user;
+
+  dynamic _token = '';
 
   @override
   void initState() {
     super.initState();
-
-    db!.getUser().then((value) {
-      setState(() {
-        _user = value;
-      });
-    });
+    _token = db!.getToken().then((value) => _token = value);
+    navigate();
 
     navigate();
   }
 
   void navigate() {
     Future.delayed(const Duration(seconds: 3), () {
-      if (_user != null) {
-        PageNavigator(ctx: context)
-            .nextPageOnly(page: const IntroScreenDefault());
+      if (_token != '') {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false);
+      } else {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const IntroScreenDefault()),
+            (route) => false);
       }
     });
   }
