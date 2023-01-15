@@ -22,6 +22,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   final requestBaseUrl = AppUrl.baseUrl;
   Barcode? result;
   bool? valid;
+  bool _qrCodeScanned = false;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -40,6 +41,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     final body = jsonDecode(response.body);
     setState(() {
       valid = body['success'];
+      _qrCodeScanned = true;
     });
     controller!.pauseCamera();
     controller!.dispose();
@@ -47,28 +49,34 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-          child: Scaffold(
-              body: Stack(
-        alignment: Alignment.center,
-        children: [
-          buildQRView(context),
-          Positioned(
-            bottom: 10,
-            child: buildResult(),
-          ),
-          Positioned(
-            top: 10,
-            child: buildControlButtons(),
-          ),
-        ],
-      )));
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+            body: Stack(
+      alignment: Alignment.center,
+      children: [
+        buildQRView(context),
+        Positioned(
+          bottom: 10,
+          child: buildResult(),
+        ),
+        Positioned(
+          top: 10,
+          child: buildControlButtons(),
+        ),
+      ],
+    )));
+  }
 
   buildQRView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
         ? 300.0
         : 300.0;
+    if (_qrCodeScanned) {
+      controller!.dispose();
+      _qrCodeScanned = false;
+    }
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
