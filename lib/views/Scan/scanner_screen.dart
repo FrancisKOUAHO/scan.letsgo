@@ -118,6 +118,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
     super.dispose();
   }
 
+  void _resetScanner() {
+    _qrCodeScanned = false;
+    setState(() {});
+  }
+
   buildResult() => Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -201,6 +206,13 @@ class _ScannerScreenState extends State<ScannerScreen> {
             ),
             onPressed: () => controller?.flipCamera(),
           ),
+          if (_qrCodeScanned)
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: () {
+                _resetScanner();
+              },
+            ),
         ],
       ));
 }
