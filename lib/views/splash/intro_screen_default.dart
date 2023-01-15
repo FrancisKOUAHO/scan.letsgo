@@ -16,10 +16,6 @@ class IntroScreenDefault extends StatefulWidget {
 class IntroScreenDefaultState extends State<IntroScreenDefault> {
   List<ContentConfig> listContentConfig = [];
 
-  final DatabaseProvider? db = DatabaseProvider();
-
-  dynamic _user;
-
   @override
   void initState() {
     super.initState();
