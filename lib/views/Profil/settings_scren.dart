@@ -76,43 +76,6 @@ class _SettingsScrenState extends State<SettingsScren> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                  child: Text(
-                    'Notifications',
-                    style: TextStyle(
-                      fontFamily: 'Outfit',
-                      color: Color(0xFF14181B),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          buildNotificationOptionRow('Nouveau pour vous', true),
-                          const Divider(thickness: 1),
-                          buildNotificationOptionRow(
-                              'Activité du compte', true),
-                          const Divider(thickness: 1),
-                          buildNotificationOptionRow('Opportunité', false),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
             const SizedBox(

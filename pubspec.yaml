@@ -45,6 +45,7 @@ dependencies:
   qr_code_scanner: ^1.0.1
   intro_slider: ^4.2.0
   expandable_text: ^2.3.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

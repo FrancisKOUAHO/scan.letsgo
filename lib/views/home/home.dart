@@ -1,4 +1,13 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:LetsGo_Scan/widgets/globals.dart' as globals;
+
+import '../../constants/url.dart';
+import '../../models/reservation.model.dart';
+import '../../theme/LetsGo_theme.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,23 +17,32 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
+  Future<List<Reservation>> reservationsFuture = getReservationList();
+
+  static Future<List<Reservation>> getReservationList() async {
+    String url =
+        '${AppUrl.baseUrl}/reservations/reservationAndOrganisator/${globals.userID}';
+    final response = await http.get(Uri.parse(url));
+    final body = jsonDecode(response.body);
+    return body.map<Reservation>(Reservation.fromJson).toList();
+  }
+
+  Widget buildReservations(List<Reservation> reservations) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF302E76),
+        backgroundColor: LetsGoTheme.main,
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(5),
-        itemCount: 10,
+        itemCount: reservations.length,
         itemBuilder: (context, index) {
+          final reservation = reservations[index];
           return Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
             child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Generated code for this Row Widget...
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: Row(
@@ -74,9 +92,9 @@ class _HomeState extends State<Home> {
                                         decoration: const BoxDecoration(
                                           color: Colors.transparent,
                                         ),
-                                        child: const Text(
-                                          'Escapade en montagne accompagné',
-                                          style: TextStyle(
+                                        child: Text(
+                                          '${reservation.activities!['name']}',
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 14,
                                           ),
@@ -90,9 +108,9 @@ class _HomeState extends State<Home> {
                                           decoration: const BoxDecoration(
                                             color: Colors.transparent,
                                           ),
-                                          child: const Text(
-                                            'Réservé par : Jacky .T',
-                                            style: TextStyle(
+                                          child: Text(
+                                            'Réservé par : ${reservation.users!['full_name']}',
+                                            style: const TextStyle(
                                               color: Color(0xFFA0A0A0),
                                               fontWeight: FontWeight.w300,
                                               fontSize: 13,
@@ -108,9 +126,9 @@ class _HomeState extends State<Home> {
                                           decoration: const BoxDecoration(
                                             color: Colors.transparent,
                                           ),
-                                          child: const Text(
-                                            'Réservation pour : 10 Adultes, 4 Enfants',
-                                            style: TextStyle(
+                                          child: Text(
+                                            'Réservation pour : ${reservation.number_of_places}',
+                                            style: const TextStyle(
                                               color: Color(0xFFA0A0A0),
                                               fontWeight: FontWeight.w300,
                                               fontSize: 13,
@@ -130,8 +148,8 @@ class _HomeState extends State<Home> {
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
-                                              children: const [
-                                                Padding(
+                                              children: [
+                                                const Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 5, 0),
                                                   child: Icon(
@@ -141,8 +159,9 @@ class _HomeState extends State<Home> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  '12:30',
-                                                  style: TextStyle(
+                                                  reservation.date_of_session!
+                                                      .substring(0, 10),
+                                                  style: const TextStyle(
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     fontSize: 14,
@@ -156,8 +175,8 @@ class _HomeState extends State<Home> {
                                                       .fromSTEB(20, 0, 0, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                children: const [
-                                                  Padding(
+                                                children: [
+                                                  const Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
@@ -169,8 +188,9 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    '12:45',
-                                                    style: TextStyle(
+                                                    reservation
+                                                        .time_of_session!,
+                                                    style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
                                                       fontSize: 14,
@@ -185,8 +205,8 @@ class _HomeState extends State<Home> {
                                                       .fromSTEB(20, 0, 0, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                children: const [
-                                                  Padding(
+                                                children: [
+                                                  const Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
@@ -198,8 +218,8 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    '25.00',
-                                                    style: TextStyle(
+                                                    reservation.total_price!,
+                                                    style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
                                                       fontSize: 14,
@@ -225,6 +245,29 @@ class _HomeState extends State<Home> {
           );
         },
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Reservation>>(
+      future: reservationsFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasData) {
+          final reservations = snapshot.data!;
+          return buildReservations(reservations);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        } else {
+          return const Center(
+            child: Text('No data'),
+          );
+        }
+      },
     );
   }
 }
