@@ -4,12 +4,13 @@ import 'dart:io' show Platform;
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
+import 'package:LetsGo_Scan/widgets/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:http/http.dart' as http;
 
 import '../../constants/url.dart';
+import '../../database/db_provider.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({Key? key}) : super(key: key);
@@ -19,12 +20,24 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
+  final DatabaseProvider? db = DatabaseProvider();
   final requestBaseUrl = AppUrl.baseUrl;
   Barcode? result;
   bool? valid;
   bool _qrCodeScanned = false;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  @override
+  void initState() {
+    super.initState();
+    db!.getUser().then((value) => {
+          if (value != null)
+            {
+              globals.userID = value['id'],
+            }
+        });
+  }
 
   @override
   void reassemble() {
@@ -127,42 +140,42 @@ class _ScannerScreenState extends State<ScannerScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (_qrCodeScanned)
-          if (valid != null)
-            (valid!
-                ? Column(
-                    children: const [
-                      Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 45.0,
-                        semanticLabel:
-                            'Text to announce in accessibility modes',
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Valider',
-                        style: TextStyle(fontSize: 15, color: Colors.green),
-                        maxLines: 5,
-                      ),
-                    ],
-                  )
-                : Column(
-                    children: const [
-                      Icon(
-                        Icons.cancel,
-                        color: Colors.red,
-                        size: 45.0,
-                        semanticLabel:
-                            'Text to announce in accessibility modes',
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'déja utilisé',
-                        style: TextStyle(fontSize: 15, color: Colors.red),
-                        maxLines: 5,
-                      ),
-                    ],
-                  ))
+            if (valid != null)
+              (valid!
+                  ? Column(
+                      children: const [
+                        Icon(
+                          Icons.check_circle,
+                          color: Colors.green,
+                          size: 45.0,
+                          semanticLabel:
+                              'Text to announce in accessibility modes',
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Valider',
+                          style: TextStyle(fontSize: 15, color: Colors.green),
+                          maxLines: 5,
+                        ),
+                      ],
+                    )
+                  : Column(
+                      children: const [
+                        Icon(
+                          Icons.cancel,
+                          color: Colors.red,
+                          size: 45.0,
+                          semanticLabel:
+                              'Text to announce in accessibility modes',
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'déja utilisé',
+                          style: TextStyle(fontSize: 15, color: Colors.red),
+                          maxLines: 5,
+                        ),
+                      ],
+                    ))
         ],
       ));
 
