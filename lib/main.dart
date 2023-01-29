@@ -28,7 +28,6 @@ class _MyAppState extends State<MyApp> {
           if (value != null)
             {
               globals.userID = value['id'],
-              print('user: ${value['id']}'),
             }
         });
   }
