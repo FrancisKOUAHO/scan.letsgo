@@ -19,12 +19,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final DatabaseProvider? db = DatabaseProvider();
-  dynamic _user = '';
 
   @override
   void initState() {
     super.initState();
-    _user = db!.getUser().then((value) => {
+    db!.getUser().then((value) => {
           if (value != null)
             {
               globals.userID = value['id'],
