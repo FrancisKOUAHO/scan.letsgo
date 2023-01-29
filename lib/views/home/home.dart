@@ -37,6 +37,11 @@ class _HomeState extends State<Home> {
         itemCount: reservations.length,
         itemBuilder: (context, index) {
           final reservation = reservations[index];
+          if (reservations.isEmpty) {
+            return const Center(
+              child: Text('vous n\'avez pas de réservations'),
+            );
+          }
           return Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
             child: Column(
