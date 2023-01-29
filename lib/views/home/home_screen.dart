@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           end: FractionalOffset.topRight,
           colors: [
             const Color(0xFF302E76).withOpacity(0.98),
-            const Color(0xFF302E76),
+            const Color(0xFF5B7CB8),
           ],
           stops: const [0.0, 1.0],
         ),

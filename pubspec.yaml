@@ -73,7 +73,9 @@ flutter:
     - assets/
     - assets/check.png
     - assets/no-check.png
+    - assets/SignIn3.png
     - assets/logo/
+    - assets/logo/appstore.png
     - assets/images/scan.png
     - assets/images/synchronize.png
     - assets/images/statistiques.png

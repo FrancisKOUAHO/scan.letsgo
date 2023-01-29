@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:LetsGo_Scan/views/splash/intro_screen_default.dart';
 import 'package:flutter/material.dart';
 
 import '../../database/db_provider.dart';
-import '../../utils/routers.dart';
 import '../home/home_screen.dart';
+import 'intro_screen_default.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,16 +15,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final DatabaseProvider? db = DatabaseProvider();
-
   dynamic _token = '';
 
   @override
   void initState() {
-    super.initState();
     _token = db!.getToken().then((value) => _token = value);
     navigate();
-
-    navigate();
+    super.initState();
   }
 
   void navigate() {
@@ -34,12 +30,12 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
-            (route) => false);
+                (route) => false);
       } else {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const IntroScreenDefault()),
-            (route) => false);
+                (route) => false);
       }
     });
   }
@@ -47,46 +43,36 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/Splash.png'),
-                  fit: BoxFit.cover,
-                ),
+        backgroundColor: const Color(0xffedf3fa),
+        body: Stack(
+          children: <Widget>[
+            Center(
+              child: AnimatedContainer(
+                duration: const Duration(seconds: 2),
+                width: 100,
+                height: 100,
+                child: Image.asset('assets/logo/appstore.png',
+                    width: 100, height: 100),
               ),
             ),
-          ),
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF302E76).withOpacity(0.5),
-                    const Color(0xFF302E76).withOpacity(0.5),
-                    const Color(0xFF302E76).withOpacity(1),
-                    const Color(0xFF302E76).withOpacity(1),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: const [0.2, 0.5, 1, 1],
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Column(
-                    children: const [],
+            const Positioned(
+              bottom: 30,
+              left: 0,
+              right: 0,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  'LetsGo',
+                  style: TextStyle(
+                      fontFamily: 'Lato',
+                      fontSize: 15,
+                      color: Color(0xFF302E76)
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ));
   }
 }
+

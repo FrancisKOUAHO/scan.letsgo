@@ -1,11 +1,8 @@
-import 'package:LetsGo_Scan/views/home/home_screen.dart';
-import 'package:LetsGo_Scan/views/login/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
-import '../../theme/letsgo_theme.dart';
-import '../../utils/routers.dart';
+import '../../theme/LetsGo_theme.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -15,7 +12,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final AuthenticationProvider _auth = AuthenticationProvider();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -25,6 +21,8 @@ class _SignInState extends State<SignIn> {
     passwordController.clear();
     super.dispose();
   }
+
+  bool passwordVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class _SignInState extends State<SignIn> {
               Stack(
                 children: [
                   Image.asset(
-                    'assets/SignIn2.png',
+                    'assets/SignIn3.png',
                     width: 381,
                     height: 300,
                     fit: BoxFit.cover,
@@ -57,7 +55,7 @@ class _SignInState extends State<SignIn> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
-                            'Re-bonjour !',
+                            'Bonjour !',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.normal,
@@ -135,7 +133,7 @@ class _SignInState extends State<SignIn> {
                         cursorColor: Colors.white,
                         cursorWidth: 2,
                         obscuringCharacter: '*',
-                        obscureText: true,
+                        obscureText: passwordVisible,
                         style: const TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           focusColor: LetsGoTheme.main,
@@ -163,41 +161,26 @@ class _SignInState extends State<SignIn> {
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                           ),
+                          suffixIcon: IconButton(
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  passwordVisible = !passwordVisible;
+                                },
+                              );
+                            },
+                            color: LetsGoTheme.main,
+                          ),
+                          alignLabelWithHint: false,
                         ),
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.done,
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(40, 15, 40, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    GestureDetector(
-                      onTap: () async {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const ResetPassword()));
-                      },
-                      child: Text(
-                        'Mot de passe oublié ?',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: LetsGoTheme.main,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

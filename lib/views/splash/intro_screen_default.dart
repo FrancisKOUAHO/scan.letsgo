@@ -25,7 +25,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         title: "Bienvenue !",
         description:
             "Conslutez les differents étapes pour l'utilisation de l'application",
-        backgroundColor: Color(0xFF302E76),
+        backgroundColor: Color(0xff4376FF),
       ),
     );
     listContentConfig.add(
@@ -34,7 +34,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         description:
             "Scanner les billets et les pass de votre événement en présentant le code-barre devant l'appareil.",
         pathImage: "assets/images/scan.png",
-        backgroundColor: Color(0xFF302E76),
+        backgroundColor: Color(0xff4376FF),
       ),
     );
     listContentConfig.add(
@@ -43,7 +43,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         description:
             "En Wi-Fi ou via réseau mobile, la validation des billets est transmise au serveur en temps réel et synchronisée avec les autres appareils.",
         pathImage: "assets/images/synchronize.png",
-        backgroundColor: Color(0xFF302E76),
+        backgroundColor: Color(0xff4376FF),
       ),
     );
     listContentConfig.add(
@@ -52,14 +52,14 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         description:
             "Consultez en temps réel les statistiques de votre (vos) appareil (s). Restez connecté au WiFi pour une synchronisation optimale des données.",
         pathImage: "assets/images/statistiques.png",
-        backgroundColor: Color(0xFF302E76),
+        backgroundColor: Color(0xff4376FF),
       ),
     );
     listContentConfig.add(
       const ContentConfig(
         title: "Let's Go Scan",
         description: "Scanner vos premiers billets dès maintenant",
-        backgroundColor: Color(0xFF302E76),
+        backgroundColor: Color(0xff4376FF),
       ),
     );
   }
