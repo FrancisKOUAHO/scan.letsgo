@@ -122,7 +122,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 4,
                                   ),
                                   Text(
-                                    '01',
+                                    '00',
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 15,
@@ -159,7 +159,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 4,
                                   ),
                                   Text(
-                                    '17',
+                                    '0',
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 15,
@@ -169,25 +169,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                 ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16, 12, 0, 20),
-                                child: Text(
-                                  'Liste de activités',
-                                  style: LetsGoTheme.subTitle,
-                                ),
-                              ),
-                            ],
                           ),
                         ],
                       ),
