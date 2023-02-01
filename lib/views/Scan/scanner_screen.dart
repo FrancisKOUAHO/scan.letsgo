@@ -50,10 +50,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   Future validateQrCode(reservation) async {
     if (_qrCodeScanned) {
-      print("1");
       return;
     } else {
-      print("2");
       String url = '$requestBaseUrl/reservations/validateQrCode/$reservation';
       final response = await http.get(Uri.parse(url));
       final body = jsonDecode(response.body);
@@ -61,8 +59,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
       setState(() {
         _qrCodeScanned = true;
       });
-      print("_qrCodeScanned $_qrCodeScanned");
-      print("3");
       return body;
     }
   }
