@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,6 +23,7 @@ class _HomeState extends State<Home> {
         '${AppUrl.baseUrl}/reservations/reservationAndOrganisator/${globals.userID}';
     final response = await http.get(Uri.parse(url));
     final body = jsonDecode(response.body);
+    globals.reservations = body.length;
     return body.map<Reservation>(Reservation.fromJson).toList();
   }
 
@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
                                           color: Colors.transparent,
                                         ),
                                         child: Text(
-                                          '${reservation.activities!['name']}',
+                                          '${reservation.activities!['name'].substring(0, 30)}...',
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 14,
