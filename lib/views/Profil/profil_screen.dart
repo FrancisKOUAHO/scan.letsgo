@@ -1,11 +1,9 @@
-import 'package:LetsGo_Scan/views/Profil/settings_scren.dart';
 import 'package:flutter/material.dart';
 
 import '../../database/db_provider.dart';
 import '../../theme/letsgo_theme.dart';
-import '../../utils/routers.dart';
 import '../../widgets/custom_profil_appbar.dart';
-import '../../widgets/custom_return_appbar.dart';
+import 'package:LetsGo_Scan/widgets/globals.dart' as globals;
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -23,6 +21,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(_user);
 
     return FutureBuilder(
       future: db!.getUser(),
@@ -122,7 +121,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 4,
                                   ),
                                   Text(
-                                    '00',
+                                    globals.reservations.toString(),
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 15,
@@ -159,7 +158,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 4,
                                   ),
                                   Text(
-                                    '0',
+                                    globals.reservations.toString(),
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 15,

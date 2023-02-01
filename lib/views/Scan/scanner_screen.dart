@@ -48,15 +48,32 @@ class _ScannerScreenState extends State<ScannerScreen> {
     controller!.resumeCamera();
   }
 
-  Future<http.Response> validateQrCode(reservation) async {
-    String url = '$requestBaseUrl/reservations/validateQrCode/$reservation';
-    final response = await http.get(Uri.parse(url));
-    final body = jsonDecode(response.body);
-    setState(() {
+  Future validateQrCode(reservation) async {
+    if (_qrCodeScanned) {
+      return;
+    } else {
+      String url = '$requestBaseUrl/reservations/validateQrCode/$reservation';
+      final response = await http.get(Uri.parse(url));
+      final body = jsonDecode(response.body);
       valid = body['success'];
-      _qrCodeScanned = true;
+      setState(() {
+        _qrCodeScanned = true;
+      });
+      return body;
+    }
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    setState(() {
+      this.controller = controller;
     });
-    return response;
+    controller.scannedDataStream.listen((scanData) {
+      setState(() {
+        validateQrCode(scanData.code);
+        result = scanData;
+        controller.pauseCamera();
+      });
+    });
   }
 
   @override
@@ -98,18 +115,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
     );
   }
 
-  void _onQRViewCreated(QRViewController controller) {
-    setState(() {
-      this.controller = controller;
-    });
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        validateQrCode(scanData.code);
-        result = scanData;
-      });
-    });
-  }
-
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
     log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
     if (!p) {
@@ -126,8 +131,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   void _resetScanner() {
-    _qrCodeScanned = false;
-    setState(() {});
+    controller?.resumeCamera();
+    setState(() {
+      _qrCodeScanned = false;
+      result = null;
+    });
   }
 
   buildResult() => Container(
@@ -140,42 +148,43 @@ class _ScannerScreenState extends State<ScannerScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (_qrCodeScanned)
-            if (valid != null)
-              (valid!
-                  ? Column(
-                      children: const [
-                        Icon(
-                          Icons.check_circle,
-                          color: Colors.green,
-                          size: 45.0,
-                          semanticLabel:
-                              'Text to announce in accessibility modes',
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Valider',
-                          style: TextStyle(fontSize: 15, color: Colors.green),
-                          maxLines: 5,
-                        ),
-                      ],
-                    )
-                  : Column(
-                      children: const [
-                        Icon(
-                          Icons.cancel,
-                          color: Colors.red,
-                          size: 45.0,
-                          semanticLabel:
-                              'Text to announce in accessibility modes',
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'déja utilisé',
-                          style: TextStyle(fontSize: 15, color: Colors.red),
-                          maxLines: 5,
-                        ),
-                      ],
-                    ))
+            valid == true
+                ? Column(
+                    children: const [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 45.0,
+                        semanticLabel:
+                            'Text to announce in accessibility modes',
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Valider',
+                        style: TextStyle(fontSize: 15, color: Colors.green),
+                        maxLines: 5,
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: const [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                        size: 45.0,
+                        semanticLabel:
+                            'Text to announce in accessibility modes',
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'déja utilisé',
+                        style: TextStyle(fontSize: 15, color: Colors.red),
+                        maxLines: 5,
+                      ),
+                    ],
+                  )
+          else
+            const Text('Scan a Qr code'),
         ],
       ));
 
