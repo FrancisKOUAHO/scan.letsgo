@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../theme/LetsGo_theme.dart';
-import '../../views/profil/settings_scren.dart';
+import '../database/db_provider.dart';
 
 class CustomProfilAppBar extends StatefulWidget {
   const CustomProfilAppBar({Key? key}) : super(key: key);
@@ -41,16 +41,12 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
                   height: 45,
                   child: IconButton(
                     icon: FaIcon(
-                      FontAwesomeIcons.gear,
+                      FontAwesomeIcons.signOutAlt,
                       color: LetsGoTheme.main,
                     ),
                     iconSize: 20.0,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SettingsScren()),
-                      );
+                      DatabaseProvider().logOut(context);
                     },
                   ),
                 ),
