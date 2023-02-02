@@ -21,7 +21,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(_user);
 
     return FutureBuilder(
       future: db!.getUser(),
@@ -132,42 +131,36 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {},
-                            child: SizedBox(
-                              width: 110,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.local_activity_outlined,
-                                    color: LetsGoTheme.main,
-                                    size: 23,
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  Text(
-                                    'RESERVATION',
-                                    style: TextStyle(
-                                      color: LetsGoTheme.black,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    globals.reservations.toString(),
-                                    style: TextStyle(
-                                      color: LetsGoTheme.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.local_activity_outlined,
+                                color: LetsGoTheme.main,
+                                size: 23,
                               ),
-                            ),
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                'RESERVATION',
+                                style: TextStyle(
+                                  color: LetsGoTheme.black,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                globals.reservations.toString(),
+                                style: TextStyle(
+                                  color: LetsGoTheme.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
