@@ -28,20 +28,26 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildReservations(List<Reservation> reservations) {
+    if (reservations.isEmpty) {
+      return const Center(
+        child: Text(
+          'Aucune réservation',
+          style: TextStyle(fontSize: 20, color: Colors.black),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: LetsGoTheme.main,
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(5),
+        physics: const BouncingScrollPhysics(),
+
         itemCount: reservations.length,
         itemBuilder: (context, index) {
           final reservation = reservations[index];
-          if (reservations.isEmpty) {
-            return const Center(
-              child: Text('vous n\'avez pas de réservations'),
-            );
-          }
           return Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
             child: Column(
@@ -164,8 +170,7 @@ class _HomeState extends State<Home> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  reservation.date_of_session!
-                                                      .substring(0, 10),
+                                                  reservation.date_of_session.toString(),
                                                   style: const TextStyle(
                                                     fontWeight:
                                                         FontWeight.normal,
