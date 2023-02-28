@@ -1,6 +1,5 @@
 import 'package:LetsGo_Scan/provider/auth_provider.dart';
 import 'package:LetsGo_Scan/views/splash/splash_screen.dart';
-import 'package:LetsGo_Scan/widgets/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
