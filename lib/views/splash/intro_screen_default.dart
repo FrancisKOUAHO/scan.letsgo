@@ -1,10 +1,6 @@
-import 'package:LetsGo_Scan/views/home/home_screen.dart';
-import 'package:LetsGo_Scan/views/login/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
-
-import '../../database/db_provider.dart';
-import '../../utils/routers.dart';
+import '../login/sign_in.dart';
 
 class IntroScreenDefault extends StatefulWidget {
   const IntroScreenDefault({Key? key}) : super(key: key);
@@ -75,6 +71,48 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
       key: UniqueKey(),
       listContentConfig: listContentConfig,
       onDonePress: onDonePress,
+      renderNextBtn: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white, // Couleur du bouton "Next"
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Text(
+          "Suivant",
+          style: TextStyle(
+            color: Colors.black, // Couleur du texte "Suivant"
+            fontSize: 10,
+          ),
+        ),
+      ),
+      renderDoneBtn: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white, // Couleur du bouton "Done"
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Text(
+          "Terminer",
+          style: TextStyle(
+            color: Colors.black, // Couleur du texte "Terminer"
+            fontSize: 10,
+          ),
+        ),
+      ),
+      renderSkipBtn: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white, // Couleur du bouton "Skip"
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Text(
+          "Passer",
+          style: TextStyle(
+            color: Colors.black, // Couleur du texte "Passer"
+            fontSize: 10,
+          ),
+        ),
+      ),
     );
   }
 }
