@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: cupertino_icons
-      sha256: d57953e10f9f8327ce64a508a355f0b1ec902193f66288e8cb5070e7c47eeb2d
+      sha256: caac504f942f41dfadcf45229ce8c47065b93919a12739f20d6173a883c5ec73
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.2"
   expandable_text:
     dependency: "direct main"
     description:
@@ -116,10 +116,10 @@ packages:
     dependency: "direct main"
     description:
       name: font_awesome_flutter
-      sha256: "5fb789145cae1f4c3245c58b3f8fb287d055c26323879eab57a7bf0cfd1e45f3"
+      sha256: "875dbb9ec1ad30d68102019ceb682760d06c72747c1c5b7885781b95f88569cc"
       url: "https://pub.dev"
     source: hosted
-    version: "10.5.0"
+    version: "10.3.0"
   google_fonts:
     dependency: "direct main"
     description:
@@ -140,10 +140,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.6"
+    version: "0.13.5"
   http_parser:
     dependency: transitive
     description:
@@ -156,10 +156,10 @@ packages:
     dependency: "direct main"
     description:
       name: intro_slider
-      sha256: eb43fefa27b0655edebc3e7fe7ff320cb5996a4e64649d79969c7099105fe52f
+      sha256: c6b3e830b01859446ea008a32d753d302d19805fdf1f775fb857a1e3590aead9
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.0"
   js:
     dependency: transitive
     description:
@@ -172,10 +172,10 @@ packages:
     dependency: "direct main"
     description:
       name: line_icons
-      sha256: "249d781d922f5437ac763d9c8f5a02cf5b499a6dc3f85e4b92e074cff0a932ab"
+      sha256: "609ce366e38fb046199b7b8f627a703ca4e07018216f4e60d2d7027e7f666b71"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.1"
   lints:
     dependency: transitive
     description:
