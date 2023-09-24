@@ -46,14 +46,14 @@ class _SignInState extends State<SignIn> {
                     width: 350,
                     height: 300,
                     decoration: const BoxDecoration(),
-                    child: Padding(
+                    child: const Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 40),
+                          EdgeInsetsDirectional.fromSTEB(20, 0, 0, 40),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             'Bonjour !',
                             style: TextStyle(

@@ -20,7 +20,7 @@ class LetsGoTheme {
   static Color whiteTransparent = const Color(0xC5FDFBFB);
 
   static TextTheme textTheme = TextTheme(
-    headline4: logoTitle,
+    headlineMedium: logoTitle,
   );
 
   static TextStyle logoTitle = TextStyle(

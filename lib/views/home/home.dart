@@ -270,11 +270,9 @@ class _HomeState extends State<Home> {
         } else if (snapshot.hasData) {
           final reservations = snapshot.data!;
           return buildReservations(reservations);
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
         } else {
           return const Center(
-            child: Text('No data'),
+            child: Text('Aucune réservation'),
           );
         }
       },

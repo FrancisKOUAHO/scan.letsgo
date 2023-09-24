@@ -35,13 +35,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                     width: 350,
                     height: 300,
                     decoration: const BoxDecoration(),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 40),
+                    child: const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 40),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             'Un trou de mémoire ?',
                             style: TextStyle(

@@ -149,8 +149,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
         children: [
           if (_qrCodeScanned)
             valid == true
-                ? Column(
-                    children: const [
+                ? const Column(
+                    children: [
                       Icon(
                         Icons.check_circle,
                         color: Colors.green,
@@ -166,8 +166,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       ),
                     ],
                   )
-                : Column(
-                    children: const [
+                : const Column(
+                    children: [
                       Icon(
                         Icons.cancel,
                         color: Colors.red,
