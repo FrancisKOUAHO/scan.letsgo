@@ -74,42 +74,42 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
       renderNextBtn: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.white, // Couleur du bouton "Next"
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: const Text(
           "Suivant",
           style: TextStyle(
-            color: Colors.black, // Couleur du texte "Suivant"
-            fontSize: 10,
+            color: Colors.black,
+            fontSize: 9,
           ),
         ),
       ),
       renderDoneBtn: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.white, // Couleur du bouton "Done"
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: const Text(
           "Terminer",
           style: TextStyle(
-            color: Colors.black, // Couleur du texte "Terminer"
-            fontSize: 10,
+            color: Colors.black,
+            fontSize: 7,
           ),
         ),
       ),
       renderSkipBtn: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.white, // Couleur du bouton "Skip"
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: const Text(
           "Passer",
           style: TextStyle(
-            color: Colors.black, // Couleur du texte "Passer"
-            fontSize: 10,
+            color: Colors.black,
+            fontSize: 9,
           ),
         ),
       ),
