@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../database/db_provider.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_profil_appbar.dart';
-import 'package:LetsGo_Scan/widgets/globals.dart' as globals;
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -120,7 +119,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     height: 4,
                                   ),
                                   Text(
-                                    globals.reservations.toString(),
+                                    '0',
                                     style: TextStyle(
                                       color: LetsGoTheme.black,
                                       fontSize: 15,
@@ -153,7 +152,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                 height: 4,
                               ),
                               Text(
-                                globals.reservations.toString(),
+                                '0',
                                 style: TextStyle(
                                   color: LetsGoTheme.black,
                                   fontSize: 15,
