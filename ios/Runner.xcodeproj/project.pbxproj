@@ -472,6 +472,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9DSNTF3559;
 				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LetsGoScan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -659,6 +660,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9DSNTF3559;
 				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LetsGoScan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -686,6 +688,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9DSNTF3559;
 				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = LetsGoScan;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
